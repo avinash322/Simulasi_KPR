@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simulasi KPR</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="designs/style.css" type="text/css" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+
+    <script>
+        // function formatnumberseparator(input) {
+        //     var nStr = input.value + '';
+        //     nStr = nStr.replace(/\./g, "");
+        //     x = nStr.split('.');
+        //     x1 = x[0];
+        //     x2 = x.length > 1 ? ',' + x[0] : '';
+        //     var rgx = /(\d+)(\d{3})/;
+        //     while (rgx.test(x1)) {
+        //         x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        //     }
+        //     input.value = x1 + x2;
+        // }
+    </script>
+
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">OCBC NISP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page">Simulasi KPR Rumah</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <h1>Contoh Simulasi KPR rumah</h1>
+        <form class="form-control" action="{{ url_for('output') }}" enctype="multipart/form-data">
+            <fieldset>
+                <div class="mb-3">
+                    {% for option in data %}
+                    <label class="form-label"> Nama Rumah: {{ option[0] }} </label>
+                    {% endfor %}
+                    <div class="flex">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"> Harga Rumah: Rp {{ hargarumah }} </label>
+                    <div class="flex">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Suku Bunga: {{ sukubunga }} %</label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Jangka waktu pinjaman: {{ waktupinjaman }} Tahun </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nilai Bunga Pinjaman Awal: Rp {{ nilaibungapinjamanawal }} </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nilai Pokok Pinjaman Perbulan: Rp {{ nilaipokokpinjamanperbulan }} </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">pinjaman perbulan: Rp {{ pinjamanperbulan }} </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Total Pinjaman: Rp {{ totalpinjaman }} </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Total Bunga: Rp {{ totalbunga }} </label>
+                </div>
+                <a href="{{ url_for('index') }}"><button type="submit" class="btn btn-outline-primary" id="backtohome">
+                        Back to Home
+                    </button></a>
+                <fieldset>
+        </form>
+    </div>
+
+
+
+
+    <footer class="footer">
+        <p>&copy;OCBC Bank 2021</p>
+    </footer>
+
+
+</body>
+
+</html>

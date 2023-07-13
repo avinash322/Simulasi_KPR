@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simulasi KPR</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="designs/style.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+
+
+
+<body>
+
+    <script>
+        var rangeValues =
+        {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "11": "11",
+            "12": "12",
+            "13": "13",
+            "14": "14",
+            "15": "15",
+        };
+
+
+        $(function () {
+
+            $('#rangeTextbunga').text(rangeValues[$('#rangebunga').val()]);
+
+            $('#rangebunga').on('input change', function () {
+                $('#rangeTextbunga').text(rangeValues[$(this).val()]);
+            });
+
+            $('#rangeTextwaktu').text(rangeValues[$('#rangewaktu').val()]);
+
+            $('#rangewaktu').on('input change', function () {
+                $('#rangeTextwaktu').text(rangeValues[$(this).val()]);
+            });
+
+
+
+        });
+
+
+    </script>
+
+    
+
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">OCBC NISP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page">Simulasi KPR Rumah</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <h1>Contoh Simulasi KPR rumah</h1>
+        <form class="form-control" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <div class="mb-3">
+                    <label for="hargarumah" class="form-label"> Tipe Rumah :</label>
+                    <div id="hargahelp" class="form-text">Pilihlah Tipe Rumah yang ingin ada beli: </div>
+                    <select name="hargarumah"  class="custom-select custom-select-lg mb-3">
+                        <option selected>Pilihan Rumah:</option>
+                        {% for option in data %}
+                        <option value={{option[1]}}>{{"Tipe rumah:",option[0],"harga:",option[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="rangebunga" class="form-label">Suku Bunga</label>
+                    <input type="range" class="form-range" min="1" max="15" step="1" id="rangebunga" name="rangebunga"
+                        list="rangebunga">
+                    <label id="rangeTextbunga"></label>%
+                    <div id="sukuhelp" class="form-text">Masukan suku bunga </div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="rangewaktu" class="form-label">Jangka waktu pinjaman</label>
+                    <input type="range" class="form-range" min="1" max="10" step="1" id="rangewaktu" name="rangewaktu">
+                    <label id="rangeTextwaktu"></label> Tahun
+                    <div id="sukuhelp" class="form-text">Masukkan perkiraan jangka waktu Pinjaman ada </div>
+                </div>
+                <a href="{{ url_for('output') }}"><button type="submit" class="btn btn-outline-primary" id=submit>
+                        Submit
+                    </button></a>
+                <fieldset>
+        </form>
+    </div>
+
+
+
+
+    <footer class="footer">
+        <p>&copy;OCBC Bank 2021</p>
+    </footer>
+
+
+</body>
+
+</html>
